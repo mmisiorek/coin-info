@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  backend:
+    build:
+      context: backend/
+    tty: true
+    environment:
+      ETHEREUM_NODE_HOSTNAME: ethereum_node
+      ETHEREUM_NODE_PORT: 8545
+    volumes:
+      - ./backend:/home/node/code
+      - /home/node/code/node_modules
+    ports:
+      - "3456:3456"
+    depends_on:
+      - ethereum_node
+
+  frontend:
+    build:
+      context: frontend/
+    tty: true
+    volumes:
+      - ./frontend:/home/node/code
+      - /home/node/code/node_modules
+    command: ["npm", "start"]
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+    
+  ethereum_node:
+    #image: trufflesuite/ganache-cli:latest
+    image: ethereum/client-go:latest
+    command: ["node", "./build/cli.node.js"]
+    ports:
+      - "8545:8545"

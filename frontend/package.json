@@ -1,0 +1,32 @@
+{
+  "name": "coin-info-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "neutrino build",
+    "start": "neutrino start",
+    "lint": "neutrino lint",
+    "test": "neutrino test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@neutrinojs/airbnb": "^8.1.1",
+    "@neutrinojs/jest": "^8.1.1",
+    "@neutrinojs/react": "^8.1.1",
+    "neutrino": "^8.1.1"
+  },
+  "dependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jquery": "^3.3.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  }
+}

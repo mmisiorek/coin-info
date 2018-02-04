@@ -1,0 +1,23 @@
+.AddMiningTimeByTimeForm {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.AddMiningTimeByTimeForm label span.text {
+    display: inline-block;
+    width: 400px;
+    margin-right: 30px;
+}
+
+.AddMiningTimeByTimeForm input[type="text"] {
+    width: 200px;
+}
+
+.AddMiningTimeByTimeForm input[type="submit"] {
+    margin-left: 30px;
+}
+
+.AddMiningTimeByTimeForm .errors {
+    color: red;
+    font-size: 12px;
+}

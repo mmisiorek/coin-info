@@ -1,0 +1,23 @@
+.AddMiningTimeByBlocksForm {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.AddMiningTimeByBlocksForm label span.text {
+    display: inline-block;
+    width: 400px;
+    margin-right: 30px;
+}
+
+.AddMiningTimeByBlocksForm input[type="text"] {
+    width: 200px;
+}
+
+.AddMiningTimeByBlocksForm input[type="submit"] {
+    margin-left: 30px;
+}
+
+.AddMiningTimeByBlocksForm .errors {
+    color: red;
+    font-size: 12px;
+}
