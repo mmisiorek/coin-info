@@ -1,8 +1,10 @@
-# Coin-info Back-end application
+Coin-info Back-end application
+==================================
 
 It is written with Node.js+Express.js.
 
-## Installation
+Installation
+---------------
 
 Build and run the container the parent directory please run command:
 
@@ -10,7 +12,8 @@ Build and run the container the parent directory please run command:
 
     docker-compose up --build backend
 
-## Testing
+Testing
+---------------
 
 Run the container with the command:
 

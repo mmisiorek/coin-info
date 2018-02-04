@@ -1,8 +1,10 @@
-# Coin-info Front-end application
+Coin-info Front-end application
+==================================
 
 It is written with React.js+Redux.
 
-## Installation
+Installation
+---------------
 
 Build and run the container the parent directory please run command:
 
@@ -10,7 +12,8 @@ Build and run the container the parent directory please run command:
 
     docker-compose build frontend
 
-## Running
+Running
+---------------
 
 Run the Docker's container for this purpose:
 
@@ -22,7 +25,8 @@ And now you can run it in the browser:
 
     http://localhost:5000
 
-## Building
+Building
+---------------
 
 Run the Docker's container with the command:
 
@@ -36,7 +40,8 @@ And inside the container:
 
     npm build
 
-## Testing
+Testing
+---------------
 
 Run the container with the command:
 
