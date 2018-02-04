@@ -8,6 +8,7 @@ services:
     environment:
       ETHEREUM_NODE_HOSTNAME: ethereum_node
       ETHEREUM_NODE_PORT: 8545
+      APPLICATION_PORT: 3456
     volumes:
       - ./backend:/home/node/code
       - /home/node/code/node_modules

@@ -3,6 +3,7 @@ const app = express();
 const ethereumBlockMiningTimeCalculatorProvider = require('./provider/ethereumBlockMiningTimeCalculatorProvider.js');
 const web3Provider = require('./provider/web3ProviderFromEnvironmentVariables.js');
 const utils = require('./utils.js');
+const process = require('process');
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -56,6 +57,6 @@ app.get('/add-transactions', function(req, res) {
     });
 });
 
-app.listen(3456, function() {
+app.listen(process.env['APPLICATION_PORT'], function() {
     console.log("The server is ready. ");
 });
