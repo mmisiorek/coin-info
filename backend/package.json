@@ -10,5 +10,10 @@
     "start": "node app/server.js",
     "develop": "nodemon app/server.js",
     "test": "jasmine"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }

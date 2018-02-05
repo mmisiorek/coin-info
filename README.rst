@@ -1,7 +1,17 @@
 Coin-info
 ==================================
 
+Fast running
+---------------
 
+You need to execute command:
+
+.. code-block:: bash
+
+    docker-compose up
+
+Everything should install properly. The React.js application should be running on port 5000 of localhost,
+and API for getting the average should be on the port 3456 of your localhost.
 
 Coin-info Back-end application
 ==================================
@@ -16,6 +26,9 @@ Build and run the container the parent directory please run command:
 .. code-block:: bash
 
     docker-compose up --build backend
+
+When you use the development environment of the application (set in docker-compose.yml file)
+you need to wait unit the test transactions are inserted into the blockchain.
 
 Testing
 ---------------

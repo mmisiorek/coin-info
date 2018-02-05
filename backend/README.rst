@@ -12,6 +12,9 @@ Build and run the container the parent directory please run command:
 
     docker-compose up --build backend
 
+When you use the development environment of the application (set in docker-compose.yml file)
+you need to wait unit the test transactions are inserted into the blockchain.
+
 Testing
 ---------------
 

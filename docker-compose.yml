@@ -9,6 +9,7 @@ services:
       ETHEREUM_NODE_HOSTNAME: ethereum_node
       ETHEREUM_NODE_PORT: 8545
       APPLICATION_PORT: 3456
+      APPLICATION_MODE: development
     volumes:
       - ./backend:/home/node/code
       - /home/node/code/node_modules
@@ -31,8 +32,7 @@ services:
       - backend
     
   ethereum_node:
-    #image: trufflesuite/ganache-cli:latest
-    image: ethereum/client-go:latest
+    image: trufflesuite/ganache-cli:latest
     command: ["node", "./build/cli.node.js"]
     ports:
       - "8545:8545"
