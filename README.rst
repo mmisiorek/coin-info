@@ -32,6 +32,14 @@ Build and run the container the parent directory please run command:
 When you use the development environment of the application (set in docker-compose.yml file)
 you need to wait unit the test transactions are inserted into the blockchain.
 
+The default URL to the front-end application:
+
+    http://localhost:5000
+
+The default URL to the back-end application:
+
+    http://localhost:3456
+
 Testing
 ---------------
 
