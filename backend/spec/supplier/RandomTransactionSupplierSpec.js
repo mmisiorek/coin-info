@@ -6,7 +6,7 @@ describe('RandomTransactionSupplier', () => {
     describe('getSupplyWithRandomTransactionsPromise', () => {
         it('should do nothing when blockchain has data', () => {
             const supplier = new RandomTransactionSupplier(web3Helpers.getFakeWeb3([{}]));
-            return supplier.getSupplyWithRandomTransactionsPromise(1).then((obj) => {
+            return supplier.getSupplyWithRandomTransactionsPromise(1, 10).then((obj) => {
                 expect(obj.transactionsAdded).toBe(false);
             });
         });
@@ -17,7 +17,7 @@ describe('RandomTransactionSupplier', () => {
             spyOn(web3.eth, 'sendTransaction').and.callFake(web3Helpers.getFakeWeb3([]).eth.sendTransaction);
             const supplier = new RandomTransactionSupplier(web3);
 
-            return supplier.getSupplyWithRandomTransactionsPromise(1).then(() => {
+            return supplier.getSupplyWithRandomTransactionsPromise(1, 10).then(() => {
                 expect(web3.eth.sendTransaction).toHaveBeenCalled();
             });
         });
@@ -26,7 +26,7 @@ describe('RandomTransactionSupplier', () => {
             const web3 = web3Helpers.getFakeWeb3([], true);
             const supplier = new RandomTransactionSupplier(web3);
 
-            return supplier.getSupplyWithRandomTransactionsPromise(1).then(() => {
+            return supplier.getSupplyWithRandomTransactionsPromise(1, 10).then(() => {
                 return Promise.reject(new Error("The promise should be rejected"));
             }, () => {
                 return Promise.resolve();
@@ -37,12 +37,23 @@ describe('RandomTransactionSupplier', () => {
             const web3 = web3Helpers.getFakeWeb3([], false, true);
             const supplier = new RandomTransactionSupplier(web3);
 
-            return supplier.getSupplyWithRandomTransactionsPromise(1).then(() => {
+            return supplier.getSupplyWithRandomTransactionsPromise(1, 10).then(() => {
                 return Promise.reject();
             }, (err) => {
                 expect(err.gettingBlockNumberFailed).toBe(true);
 
                 return Promise.resolve();
+            });
+        });
+
+        it('should call 20 times sendTransaction with param 20', () => {
+            const web3 = web3Helpers.getFakeWeb3([]);
+            const supplier = new RandomTransactionSupplier(web3);
+
+            spyOn(web3.eth, 'sendTransaction').and.callThrough();
+
+            return supplier.getSupplyWithRandomTransactionsPromise(1, 20).then(() => {
+                expect(web3.eth.sendTransaction.calls.count()).toBe(20);
             });
         });
     });

@@ -3,5 +3,6 @@
    "rules": {
       "indent": ["error", 4],
       "function-paren-newline": ["error", "consistent"],
+      "no-loop-func": "off"
    }
 }

@@ -1,7 +1,9 @@
 Coin-info Back-end application
 ==================================
 
-It is written with Node.js+Express.js.
+It is written with Node.js+Express.js. The application is going to add random transactions
+when it is in development mode and the blockchain is empty (the current block number is
+equal to 0).
 
 Installation
 ---------------

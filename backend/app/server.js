@@ -51,7 +51,7 @@ app.listen(process.env.APPLICATION_PORT, () => {
         const supplier = randomTransactionSupplierProvider.get();
 
         supplier.getTryToSupplyEmptyBlockchainPromise(5000, 2000).then((obj) => {
-            if (obj.transactionsAdded) {
+            if (obj && obj.transactionsAdded) {
                 console.log('The transactions have been added.');
             } else {
                 console.log('There was no need to add transactions.');

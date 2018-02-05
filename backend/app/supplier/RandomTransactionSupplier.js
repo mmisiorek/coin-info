@@ -27,7 +27,7 @@ class RandomTransactionSupplier {
         this.web3 = web3;
     }
 
-    getSupplyWithRandomTransactionsPromise(timeout) {
+    getSupplyWithRandomTransactionsPromise(timeout, howManyBlocks) {
         const self = this;
 
         return new Promise((resolve, reject) => {
@@ -47,7 +47,7 @@ class RandomTransactionSupplier {
 
                         let promise = Promise.resolve();
 
-                        for (let i = 0; i < 10; i += 1) {
+                        for (let i = 0; i < howManyBlocks; i += 1) {
                             const chosenAccounts = getRandomAccounts(accounts);
 
                             promise = promise.then(() => getTransferPromise(
@@ -77,18 +77,22 @@ class RandomTransactionSupplier {
         return new Promise((resolve, reject) => {
             const iterator = 20;
             let promise = Promise.resolve();
+            let alreadyCalledResolve = false;
 
             for (let i = 0; i < iterator; i += 1) {
                 promise = promise.then(() => new Promise((resolve2, reject2) => {
                     setTimeout(() => {
-                        self.getSupplyWithRandomTransactionsPromise(supplyTime).then(() => {
-                            resolve2();
+                        self.getSupplyWithRandomTransactionsPromise(supplyTime, 10).then((obj) => {
+                            resolve2(obj);
                         }, (err2) => {
                             reject2(err2);
                         });
                     }, retryTime);
                 })).then((obj) => {
-                    resolve(obj);
+                    if (!alreadyCalledResolve) {
+                        resolve(obj);
+                        alreadyCalledResolve = true;
+                    }
                     return Promise.reject();
                 }, (obj) => {
                     if (!obj.gettingBlockNumberFailed) {
@@ -100,7 +104,6 @@ class RandomTransactionSupplier {
             promise.then(() => {
                 reject(new Error('The blockchain seems to be unavailable'));
             }, () => {
-                resolve();
             });
         });
     }
