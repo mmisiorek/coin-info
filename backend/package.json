@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node app/server.js",
     "develop": "nodemon app/server.js",
-    "test": "jasmine"
+    "test": "jasmine",
+    "lint": "node ./node_modules/eslint/bin/eslint.js app/*.js app/*/*.js app/*/*/*.js"
   },
   "devDependencies": {
     "eslint": "^4.17.0",

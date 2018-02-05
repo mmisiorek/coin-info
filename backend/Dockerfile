@@ -1,6 +1,6 @@
 FROM node:8.9
 
-RUN npm install -g nodemon jasmine eslint
+RUN npm install -g nodemon jasmine
 RUN mkdir code
 
 WORKDIR /home/node/code
