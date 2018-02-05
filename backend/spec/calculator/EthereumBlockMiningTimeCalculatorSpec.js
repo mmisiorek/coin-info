@@ -1,45 +1,5 @@
 const EthereumBlockMiningTimeCalculator = require('../../app/calculator/EthereumBlockMiningTimeCalculator');
-
-function getFakeWeb3(data) {
-
-    return {
-        eth: {
-            getBlock: function(blockNumber, fn) {
-                if(blockNumber > data.length) {
-                    fn(new Error("The block number is too high"));
-                } else {
-                    fn(undefined, data[blockNumber-1]);
-                }
-            },
-
-            getBlockNumber: function(fn) {
-                fn(undefined, data.length);
-            }
-        }
-    };
-
-}
-
-function getRejectingFakeWeb3(data) {
-
-    return {
-        eth: {
-            getBlock: function(blockNumber, fn) {
-                // throw exception on second block
-                if(blockNumber == data.length-2) {
-                    fn(new Error());
-                } else {
-                    fn(undefined, data[blockNumber]);
-                }
-            },
-
-            getBlockNumber: function(fn) {
-                fn(undefined, data.length);
-            }
-        }
-    }
-
-}
+const web3Helpers = require('../helpers/web3Helpers.js');
 
 describe('EthereumBlockMiningTimeCalculator', function() {
 
@@ -52,10 +12,10 @@ describe('EthereumBlockMiningTimeCalculator', function() {
         {timestamp: 400},
         {timestamp: 450}
     ];
-    const web3 = getFakeWeb3(data);
-    const rejectingWeb3 = getRejectingFakeWeb3(data);
-    const emptyWeb3 = getFakeWeb3([]);
-    const oneEntryWeb3 = getFakeWeb3([{timestamp: 1000}]);
+    const web3 = web3Helpers.getFakeWeb3(data);
+    const rejectingWeb3 = web3Helpers.getRejectingFakeWeb3(data);
+    const emptyWeb3 = web3Helpers.getFakeWeb3([]);
+    const oneEntryWeb3 = web3Helpers.getFakeWeb3([{timestamp: 1000}]);
 
     it('getCalculateAverageMiningTimeForSecondsPromise returns correct average time', function() {
         const calculator = new EthereumBlockMiningTimeCalculator(web3);
@@ -173,6 +133,4 @@ describe('EthereumBlockMiningTimeCalculator', function() {
             return Promise.resolve();
         });
     });
-
-
 });

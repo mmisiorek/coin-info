@@ -1,8 +1,7 @@
 const express = require('express');
 const process = require('process');
 const ethereumBlockMiningTimeCalculatorProvider = require('./provider/ethereumBlockMiningTimeCalculatorProvider.js');
-const web3Provider = require('./provider/web3ProviderFromEnvironmentVariables.js');
-const utils = require('./utils.js');
+const randomTransactionSupplierProvider = require('./provider/randomTransactionSupplierProvider.js');
 
 const app = express();
 
@@ -49,25 +48,16 @@ app.listen(process.env.APPLICATION_PORT, () => {
     // when development mode, please wait until all test
     // transactions are inserted into the blockchain
     if (process.env.APPLICATION_MODE === 'development') {
-        const web3 = web3Provider.get();
+        const supplier = randomTransactionSupplierProvider.get();
 
-        web3.eth.getBlockNumber((blockNumber) => {
-            if (blockNumber === 0) {
-                web3.eth.getAccounts((err, accounts) => {
-                    let promise = Promise.resolve();
-
-                    for (let i = 0; i < 10; i += 1) {
-                        const chosenAccounts = utils.getRandomAccounts(accounts);
-
-                        promise = promise.then(() =>
-                            utils.getTransferPromise(chosenAccounts.from, chosenAccounts.to, 2000));
-                    }
-
-                    promise.then(() => {
-                        console.log('Test transactions are save to the blockchain.');
-                    });
-                });
+        supplier.getTryToSupplyEmptyBlockchainPromise(5000, 2000).then((obj) => {
+            if (obj.transactionsAdded) {
+                console.log('The transactions have been added.');
+            } else {
+                console.log('There was no need to add transactions.');
             }
+        }, (err) => {
+            console.log('There was an error when tried to add transactions ', err);
         });
     }
     /* eslint-enable no-console */

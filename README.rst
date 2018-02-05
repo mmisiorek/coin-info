@@ -45,6 +45,21 @@ And later in the container execute:
 
     jasmine
 
+Linting
+--------------
+
+Run the container with the command:
+
+.. code-block:: bash
+
+    docker-compose run backend bash
+
+And later in the container execute:
+
+.. code-block:: bash
+
+    npm run lint
+
 Coin-info Front-end application
 ==================================
 

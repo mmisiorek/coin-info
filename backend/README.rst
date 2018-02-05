@@ -29,3 +29,18 @@ And later in the container execute:
 .. code-block:: bash
 
     jasmine
+
+Linting
+--------------
+
+Run the container with the command:
+
+.. code-block:: bash
+
+    docker-compose run backend bash
+
+And later in the container execute:
+
+.. code-block:: bash
+
+    npm run lint

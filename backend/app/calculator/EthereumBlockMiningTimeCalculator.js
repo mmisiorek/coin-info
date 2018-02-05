@@ -163,6 +163,8 @@ class EthereumBlockMiningTimeCalculator {
                 }, (err) => {
                     reject(err);
                 });
+            }, (err) => {
+                reject(err);
             });
         });
     }
