@@ -82,7 +82,7 @@ class RandomTransactionSupplier {
             for (let i = 0; i < iterator; i += 1) {
                 promise = promise.then(() => new Promise((resolve2, reject2) => {
                     setTimeout(() => {
-                        self.getSupplyWithRandomTransactionsPromise(supplyTime, 10).then((obj) => {
+                        self.getSupplyWithRandomTransactionsPromise(supplyTime, 50).then((obj) => {
                             resolve2(obj);
                         }, (err2) => {
                             reject2(err2);

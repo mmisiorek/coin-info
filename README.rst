@@ -16,7 +16,9 @@ and API for getting the average should be on the port 3456 of your localhost.
 Coin-info Back-end application
 ==================================
 
-It is written with Node.js+Express.js.
+It is written with Node.js+Express.js. It is written with Node.js+Express.js. The application is going to add 50 random transactions
+when it is in development mode and the blockchain is empty (the current block number is equal to 0).
+
 
 Installation
 ---------------
